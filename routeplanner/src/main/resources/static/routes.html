@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Route Results</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-nasa">
+
+<div class="topbar">
+    <div class="brand">
+        <div class="dot"></div>
+        <div>
+            <div class="title">Interplanetary Mission Console</div>
+            <div class="subtitle">Route Results</div>
+        </div>
+    </div>
+
+    <div class="actions">
+        <button class="btn" onclick="window.location.href='mission.html'">← Back</button>
+        <button class="btn" id="goAnalyticsBtn">Analytics</button>
+    </div>
+</div>
+
+<h1 class="pageTitle">Route Options</h1>
+
+<div id="loadingBox" class="loading" style="display:none;">
+    <div class="loadingText">Calculating routes...</div>
+    <div class="progressOuter">
+        <div id="progressBar" class="progressInner"></div>
+    </div>
+</div>
+
+<div id="dashboard" class="dashboard" style="display:none;">
+    <div class="card">
+        <div class="label">Total Routes</div>
+        <div id="kpiTotal" class="value">-</div>
+    </div>
+    <div class="card">
+        <div class="label">Best Days</div>
+        <div id="kpiBestDays" class="value">-</div>
+    </div>
+    <div class="card">
+        <div class="label">Best ΔV</div>
+        <div id="kpiBestDv" class="value">-</div>
+    </div>
+    <div class="card">
+        <div class="label">Preference</div>
+        <div id="kpiPref" class="value">-</div>
+    </div>
+</div>
+
+<div class="resultsHeader">
+    <h2>Results</h2>
+    <div id="missionSummary" class="summaryLine"></div>
+</div>
+
+<table id="resultsTable">
+    <thead>
+    <tr>
+        <th>Rank</th>
+        <th>Departure</th>
+        <th>Arrival</th>
+        <th>Days</th>
+        <th>Delta-V</th>
+        <th>Select</th>
+    </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+<script src="routes.js"></script>
+</body>
+</html>

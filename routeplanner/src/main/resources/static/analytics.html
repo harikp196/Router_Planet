@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Analytics</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="theme-nasa">
+
+<div class="topbar">
+    <div class="brand">
+        <div class="dot"></div>
+        <div>
+            <div class="title">Interplanetary Mission Console</div>
+            <div class="subtitle">Analytics</div>
+        </div>
+    </div>
+
+    <div class="actions">
+        <button class="btn" onclick="window.location.href='routes.html'">← Back to Routes</button>
+        <button class="btn" onclick="window.location.href='simulation.html'">Simulation</button>
+    </div>
+</div>
+
+<h1 class="pageTitle">Mission Analytics</h1>
+
+<div class="dashboard">
+    <div class="card">
+        <div class="label">Mission</div>
+        <div id="analyticsMission" class="value" style="font-size:16px;">-</div>
+    </div>
+    <div class="card">
+        <div class="label">Assist</div>
+        <div id="analyticsAssist" class="value" style="font-size:16px;">-</div>
+    </div>
+</div>
+
+<div class="chartGrid">
+    <div class="card">
+        <div class="panelTitle">Days vs Route Rank</div>
+        <canvas id="daysChart"></canvas>
+    </div>
+    <div class="card">
+        <div class="panelTitle">Delta-V vs Route Rank</div>
+        <canvas id="dvChart"></canvas>
+    </div>
+    <div class="card">
+        <div class="panelTitle">Days vs Delta-V</div>
+        <canvas id="scatterChart"></canvas>
+    </div>
+</div>
+
+<script src="analytics.js"></script>
+</body>
+</html>

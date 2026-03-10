@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Mission Planner</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-nasa">
+
+<div class="topbar">
+    <div class="brand">
+        <div class="dot"></div>
+        <div>
+            <div class="title">Interplanetary Mission Console</div>
+            <div class="subtitle">Mission Planner</div>
+        </div>
+    </div>
+
+    <div class="actions">
+        <select id="themeSelect">
+            <option value="nasa">Theme 1 — Mission Control</option>
+            <option value="sim">Theme 2 — Simulation UI</option>
+        </select>
+    </div>
+</div>
+
+<h1 class="pageTitle">Create Mission</h1>
+
+<form id="missionForm" class="formCard">
+    <label>Source Planet:</label>
+    <select id="source"></select>
+
+    <label>Destination Planet:</label>
+    <select id="destination"></select>
+
+    <label>Start Date:</label>
+    <input type="date" id="startDate" required>
+
+    <label>End Date:</label>
+    <input type="date" id="endDate" required>
+
+    <label>Preference:</label>
+    <select id="preference">
+        <option value="MIN_FUEL">Min Fuel</option>
+        <option value="MIN_TIME">Min Time</option>
+        <option value="BALANCED" selected>Balanced</option>
+    </select>
+
+    <div class="assistBox">
+        <label class="assistText">
+            <input type="checkbox" id="gravityAssist">
+            Enable Gravity Assist
+        </label>
+        <div id="assistLabel" class="assistHint"></div>
+    </div>
+
+    <button type="submit" class="btnPrimary">Generate Routes</button>
+</form>
+
+<script src="mission.js"></script>
+</body>
+</html>

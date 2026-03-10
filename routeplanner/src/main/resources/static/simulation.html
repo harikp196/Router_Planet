@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Simulation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-nasa">
+
+<div class="topbar">
+    <div class="brand">
+        <div class="dot"></div>
+        <div>
+            <div class="title">Interplanetary Mission Console</div>
+            <div class="subtitle">Simulation</div>
+        </div>
+    </div>
+
+    <div class="actions">
+        <button class="btn" onclick="window.location.href='routes.html'">← Back to Routes</button>
+        <button class="btn" onclick="window.location.href='analytics.html'">Analytics</button>
+    </div>
+</div>
+
+<h1 class="pageTitle">Mission Simulation</h1>
+
+<div class="simPanel">
+    <div class="simLeft">
+        <div class="panelTitle">Trajectory Simulation</div>
+        <canvas id="simCanvas" width="900" height="320" class="canvas"></canvas>
+
+        <div class="timeline">
+            <div class="timelineLabel" id="timelineLabel">Ready to simulate.</div>
+            <div class="timelineOuter">
+                <div id="timelineInner" class="timelineInner"></div>
+            </div>
+        </div>
+
+        <div style="margin-top:12px;">
+            <button id="startSimBtn" class="btnPrimary">Start Simulation</button>
+        </div>
+    </div>
+
+    <div class="simRight">
+        <div class="panelTitle">Selected Route</div>
+        <div id="routeDetails" class="details"></div>
+    </div>
+</div>
+
+<script src="simulation.js"></script>
+</body>
+</html>

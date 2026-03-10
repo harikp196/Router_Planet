@@ -38,18 +38,26 @@ public class MissionService {
     @Transactional
     public MissionResponseDto createMission(MissionRequestDto request) {
 
-        if (request.getSource() == null || request.getDestination() == null)
+        if (request == null) {
+            throw new IllegalArgumentException("Mission request is required.");
+        }
+
+        if (request.getSource() == null || request.getDestination() == null) {
             throw new IllegalArgumentException("Source and destination are required.");
+        }
 
-        if (request.getSource().equalsIgnoreCase(request.getDestination()))
+        if (request.getSource().equalsIgnoreCase(request.getDestination())) {
             throw new IllegalArgumentException("Source and destination cannot be the same.");
+        }
 
-        if (request.getStartDate() == null || request.getEndDate() == null)
+        if (request.getStartDate() == null || request.getEndDate() == null) {
             throw new IllegalArgumentException("Start date and end date are required.");
+        }
 
         long diff = ChronoUnit.DAYS.between(request.getStartDate(), request.getEndDate());
-        if (diff < 10)
+        if (diff < 10) {
             throw new IllegalArgumentException("End date must be at least 10 days after start date.");
+        }
 
         Planet source = planetRepo.findByNameIgnoreCase(request.getSource())
                 .orElseThrow(() -> new IllegalArgumentException("Invalid source planet: " + request.getSource()));
@@ -58,11 +66,15 @@ public class MissionService {
                 .orElseThrow(() -> new IllegalArgumentException("Invalid destination planet: " + request.getDestination()));
 
         Preference pref = request.getPreference();
-        if (pref == null) pref = Preference.BALANCED;
+        if (pref == null) {
+            pref = Preference.BALANCED;
+        }
 
         boolean gravityAssist = Boolean.TRUE.equals(request.getGravityAssist());
         String assistType = request.getAssistType();
-        if (assistType == null || assistType.isBlank()) assistType = "NONE";
+        if (assistType == null || assistType.isBlank()) {
+            assistType = "NONE";
+        }
 
         // Save mission
         Mission mission = new Mission();
@@ -73,7 +85,7 @@ public class MissionService {
         mission.setPreference(pref);
         missionRepo.save(mission);
 
-        // ✅ Generate routes (assist + preference supported)
+        // Generate routes
         List<RouteDto> routes = routePlannerService.generateRoutes(
                 source.getName(),
                 destination.getName(),
@@ -84,7 +96,7 @@ public class MissionService {
                 assistType
         );
 
-        // Final sorting by preference
+        // Final sorting
         switch (pref) {
             case MIN_TIME -> routes.sort(
                     Comparator.comparingInt(RouteDto::getDays)
@@ -99,7 +111,7 @@ public class MissionService {
             );
         }
 
-        // Rank + save route options
+        // Rank and save options
         for (int i = 0; i < routes.size(); i++) {
             RouteDto r = routes.get(i);
             r.setRank(i + 1);
@@ -114,8 +126,13 @@ public class MissionService {
             routeOptionRepo.save(opt);
         }
 
-        // ✅ Ensure MissionResponseDto has this constructor:
-        // MissionResponseDto(String source, String destination, Preference preference, List<RouteDto> routes)
-        return new MissionResponseDto(source.getName(), destination.getName(), pref, routes);
+        return new MissionResponseDto(
+                source.getName(),
+                destination.getName(),
+                pref,
+                gravityAssist,
+                assistType,
+                routes
+        );
     }
 }

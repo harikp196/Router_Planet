@@ -34,7 +34,6 @@ body.theme-sim{
     #070a14;
 }
 
-/* Topbar */
 .topbar{
   display:flex; align-items:center; justify-content:space-between;
   gap:16px; padding:14px 16px; margin-bottom:14px;
@@ -42,30 +41,29 @@ body.theme-sim{
   background: rgba(255,255,255,0.04); box-shadow: var(--shadow);
   backdrop-filter: blur(8px);
 }
+
 .brand{display:flex; gap:12px; align-items:center;}
 .dot{
   width:10px; height:10px; border-radius:50%;
   background: var(--accent);
   box-shadow: 0 0 18px rgba(73,211,255,0.7);
 }
-.title{font-weight:900; font-size:18px; letter-spacing:0.3px;}
-.subtitle{color:var(--muted); font-size:12px; margin-top:2px;}
+.title{font-weight:900; font-size:18px;}
+.subtitle{color:var(--muted); font-size:12px;}
+
 .actions{display:flex; gap:10px; align-items:center;}
 
-/* Page Title */
 .pageTitle{
   margin: 10px 2px 14px;
   font-size: 22px;
   font-weight: 900;
 }
 
-/* Form Card */
 .formCard{
   display:grid;
   grid-template-columns: 200px minmax(220px, 340px);
   gap: 10px;
   align-items:center;
-
   border:1px solid var(--border);
   border-radius: 16px;
   padding: 14px 16px;
@@ -74,7 +72,6 @@ body.theme-sim{
   margin-bottom: 14px;
 }
 
-/* Controls: FIX white-on-white */
 select, input[type="date"]{
   border:1px solid var(--border);
   background: rgba(255,255,255,0.08);
@@ -83,12 +80,12 @@ select, input[type="date"]{
   border-radius:12px;
   outline: none;
 }
+
 select option{
-  background: #0c1328;   /* dropdown list bg */
-  color: var(--text);    /* dropdown text */
+  background: #0c1328;
+  color: var(--text);
 }
 
-/* Buttons */
 .btn, .btnPrimary{
   border:1px solid var(--border);
   background: rgba(255,255,255,0.06);
@@ -98,15 +95,15 @@ select option{
   cursor:pointer;
   font-weight:800;
 }
-.btn:disabled{opacity:0.55; cursor:not-allowed;}
+
 .btnPrimary{
-  grid-column: 1 / span 2;
   background: rgba(73,211,255,0.14);
   border-color: rgba(73,211,255,0.35);
 }
-.btnPrimary:hover{filter: brightness(1.06);}
 
-/* Assist Box */
+.btnPrimary:hover{filter: brightness(1.06);}
+.btn:disabled{opacity:0.55; cursor:not-allowed;}
+
 .assistBox{
   display:flex;
   flex-direction:column;
@@ -134,7 +131,6 @@ select option{
   font-size:12px;
 }
 
-/* Loading */
 .loading{
   border:1px solid var(--border);
   border-radius:14px;
@@ -146,7 +142,6 @@ select option{
 .progressOuter{height:10px; border-radius:8px; background: rgba(255,255,255,0.08); overflow:hidden;}
 .progressInner{height:10px; width:0%; background: var(--accent); transition: width 0.2s;}
 
-/* Dashboard */
 .dashboard{
   display:grid;
   grid-template-columns: repeat(4, minmax(140px, 1fr));
@@ -163,7 +158,6 @@ select option{
 .label{font-size:12px; color:var(--muted);}
 .value{font-size:22px; font-weight:900; margin-top:6px;}
 
-/* Simulation Panel */
 .simPanel{
   display:grid;
   grid-template-columns: 2fr 1fr;
@@ -191,7 +185,6 @@ select option{
 .details{font-size:13px; line-height:1.55;}
 .muted{color:var(--muted);}
 
-/* Results */
 .resultsHeader{
   display:flex;
   align-items:flex-end;
@@ -205,7 +198,6 @@ select option{
   font-size: 13px;
 }
 
-/* Table */
 #resultsTable{
   width:100%;
   border-collapse: collapse;
@@ -230,10 +222,20 @@ select option{
   outline: 1px solid rgba(73,211,255,0.25);
 }
 
-/* Responsive */
+.chartGrid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:12px;
+}
+.chartGrid .card:last-child{
+  grid-column: 1 / span 2;
+}
+
 @media (max-width: 900px){
   .formCard{grid-template-columns: 1fr;}
-  .btnPrimary{grid-column: 1;}
+  .assistBox{grid-column: 1;}
   .dashboard{grid-template-columns: repeat(2, minmax(140px,1fr));}
   .simPanel{grid-template-columns: 1fr;}
+  .chartGrid{grid-template-columns: 1fr;}
+  .chartGrid .card:last-child{grid-column: 1;}
 }
